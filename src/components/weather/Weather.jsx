@@ -14,12 +14,10 @@ function Weather() {
         axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${handelInput}&APPID=99aeb64dd4498f2b7d822956e60d1581`)
             .then((res) => {
                 setInfo(res.data);
+                setHandelInput('');
             })
             .catch((err) => {
                 setError(true);
-            })
-            .finally(() => {
-                setHandelInput('');
             })
     }
 
