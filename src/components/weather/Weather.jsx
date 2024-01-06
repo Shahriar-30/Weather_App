@@ -19,7 +19,7 @@ function Weather() {
                 setError(true);
             })
             .finally(() => {
-
+                setHandelInput('');
             })
     }
 
@@ -62,7 +62,7 @@ function Weather() {
                     <Loader />
                     :
                     <div className=' w-full h-screen flex flex-col justify-between'>
-                        <h1 className='absolute top-1 text-white w-full bg-blue-600 font-pop text-[20px] pl-[10px] font-semibold'>Weather App</h1>
+                        <h1 className='absolute top-2 text-white w-full bg-blue-600 font-pop text-[20px] pl-[10px] font-semibold'>Weather App</h1>
                         <div className='flex items-center flex-col font-pop'>
                             <div className='flex items-center justify-center gap-2 mt-[50px]'>
 
@@ -70,8 +70,8 @@ function Weather() {
                                     <input type="text" onChange={(e) => {
                                         setHandelInput(e.target.value)
                                         setError(false);
-                                    }} placeholder='Search by city...'
-                                        className='w-full max-w-[260px] border-2 border-solid outline-none border-black rounded px-[10px] py-[5px] font-pop font-bold indent-1 tracking-wide' />
+                                    }} value={handelInput} placeholder='Search by city...'
+                                        className='w-full max-w-[260px] border-[2px] border-solid outline-none border-black rounded px-[10px] py-[5px] font-pop font-bold indent-1 tracking-wide' />
 
                                     {
                                         error ?
@@ -81,10 +81,10 @@ function Weather() {
                                     }
                                 </div>
 
-                                <div className='bg-[rgba(0,0,0,0.24)] flex p-[3px] rounded'>
+                                <div className='bg-blue-600 flex p-[3px] rounded'>
                                     <button onClick={search}
-                                        className='w-[35px]'>
-                                        <img src="search.svg" />
+                                        className='w-full text-white px-1 py-1 font-pop font-semibold text-[17px]'>
+                                        Search
                                     </button>
                                 </div>
 
