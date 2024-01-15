@@ -21,9 +21,9 @@ function Weather() {
             })
     }
 
-    setTimeout(() => {
-        setLoading(false)
-    }, 2000);
+    // setTimeout(() => {
+    //     setLoading(false)
+    // }, 2000);
 
     useEffect(() => {
         if (info?.weather[0].main == "Clear") {
