@@ -21,9 +21,9 @@ function Weather() {
             })
     }
 
-    // setTimeout(() => {
-    //     setLoading(false)
-    // }, 2000);
+    setTimeout(() => {
+        setLoading(false)
+    }, 2000);
 
     useEffect(() => {
         if (info?.weather[0].main == "Clear") {
@@ -60,16 +60,16 @@ function Weather() {
                     <Loader />
                     :
                     <div className=' w-full h-screen flex flex-col justify-between'>
-                        <h1 className='absolute top-2 text-white w-full bg-blue-600 font-pop text-[20px] pl-[10px] font-semibold'>Weather App</h1>
+                        <h1 className='absolute top-2 text-white w-full bg-blue-600 font-pop text-[20px] pl-[10px] font-semibold lg:pl-[50px]'>Weather App</h1>
                         <div className='flex items-center flex-col font-pop'>
-                            <div className='flex items-center justify-center gap-2 mt-[50px]'>
+                            <div className='flex items-center justify-center gap-1 mt-[50px]'>
 
                                 <div>
                                     <input type="text" onChange={(e) => {
                                         setHandelInput(e.target.value)
                                         setError(false);
                                     }} value={handelInput} placeholder='Search by city...'
-                                        className='w-full max-w-[260px] border-[2px] border-solid outline-none border-black rounded px-[10px] py-[5px] font-pop font-bold indent-1 tracking-wide' />
+                                        className='w-full max-w-[260px] border-[2px] border-solid outline-none bg-[#eee] border-black rounded-md px-[10px] py-[5px] font-pop font-bold indent-1 tracking-wide' />
 
                                     {
                                         error ?
@@ -79,9 +79,9 @@ function Weather() {
                                     }
                                 </div>
 
-                                <div className='bg-blue-600 flex p-[3px] rounded'>
+                                <div className='bg-blue-600 flex p-[3px] rounded-lg'>
                                     <button onClick={search}
-                                        className='w-full text-white px-1 py-1 font-pop font-semibold text-[17px]'>
+                                        className='w-full text-white px-3 py-1 font-pop font-semibold text-[17px]'>
                                         Search
                                     </button>
                                 </div>
@@ -108,7 +108,7 @@ function Weather() {
 
                         <div className='flex '>
 
-                            <div className=' flex items-center border-2 w-full max-w-[50%] p-[8px]'>
+                            <div className=' flex items-center border-2 w-full max-w-[50%] p-[8px]  sm:justify-center'>
                                 <img src="life.svg" className='w-[60px]' />
                                 <div>
                                     <p className='text-[20px] font-bold'>
@@ -121,7 +121,7 @@ function Weather() {
                                 </div>
                             </div>
 
-                            <div className=' flex items-center border-2 w-full max-w-[50%] p-[15px]'>
+                            <div className=' flex items-center border-2 w-full max-w-[50%] p-[15px]  sm:justify-center'>
                                 <img src="water.svg" className='w-[60px]' />
                                 <div>
                                     <p className='text-[20px] font-bold'>{info?.main.humidity}%</p>
