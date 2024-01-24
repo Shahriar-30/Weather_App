@@ -4,10 +4,11 @@ import Loader from '../loader/Loader';
 
 function Weather() {
 
-    const [handelInput, setHandelInput] = useState("");
-    const [img, setImg] = useState("");
-    const [error, setError] = useState(false);
-    const [info, setInfo] = useState(null);
+    const [handelInput, setHandelInput] = useState("")
+    const [type, setType] = useState(null)
+    const [img, setImg] = useState("")
+    const [error, setError] = useState(false)
+    const [info, setInfo] = useState(null)
     const [loading, setLoading] = useState(true)
 
     let search = () => {
@@ -65,9 +66,18 @@ function Weather() {
                             <div className='flex items-center justify-center gap-1 mt-[50px]'>
 
                                 <div>
-                                    <input type="text" onChange={(e) => {
-                                        setHandelInput(e.target.value)
+                                    <input type="text" onFocusCapture={()=>{setType(null)}} onChange={(e) => {
+                                        let val = e.target.value;
+                                        setHandelInput(val)
                                         setError(false);
+
+                                        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${val}&APPID=99aeb64dd4498f2b7d822956e60d1581`)
+                                            .then(res => {
+                                                setType(res.data);
+                                            })
+
+
+
                                     }} value={handelInput} placeholder='Search by city...'
                                         className='w-full max-w-[260px] border-[2px] border-solid outline-none bg-[#eee] border-black rounded-md px-[10px] py-[5px] font-pop font-bold indent-1 tracking-wide' />
 
@@ -77,10 +87,28 @@ function Weather() {
                                             :
                                             ""
                                     }
+                                    {/* /=============================== */}
+                                    {
+                                        type ?
+                                            <div className='w-full max-w-[260px] max-h-[80px] flex flex-col  bg-[#eee] absolute mt-1 rounded overflow-y-scroll'>
+                                                <div className='flex items-center justify-center p-2 gap-1 border-[2px] border-[#fff] cursor-pointer' 
+                                                onClick={()=> {
+                                                    setInfo(type)
+                                                    setType(null)
+                                                    setHandelInput("")
+                                                }}>
+                                                    <img src="location.svg" className='w-[18px]' />
+                                                    <h4 className='font-semibold'>{type?.name}, {type?.sys.country}</h4>
+                                                </div>
+                                            </div>
+                                            :
+                                            ""
+                                    }
+
                                 </div>
 
                                 <div className='bg-blue-600 flex p-[3px] rounded-lg'>
-                                    <button onClick={search}
+                                    <button onClick={search}  
                                         className='w-full text-white px-3 py-1 font-pop font-semibold text-[17px]'>
                                         Search
                                     </button>
@@ -103,6 +131,7 @@ function Weather() {
                                     <img src="location.svg" className='w-[18px]' />
                                     <h4 className='font-semibold'>{info?.name}, {info?.sys.country}</h4>
                                 </div>
+
                             </div>
                         </div>
 
